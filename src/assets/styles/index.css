@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Rock+Salt&display=swap");
+
+:root {
+  --background-black: #282c34;
+  --text-light: #c4c4c4;
+  --nav-button-highlight: #c4c4c4;
+}
+
+body {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+}
+
+a {
+  outline: none;
+}
+
+.App {
+  min-height: 100vh;
+  text-align: center;
+  background-color: var(--background-black);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  color: var(--text-light);
+}
+
+.logo-font {
+  font-family: "Rock Salt", cursive;
+  font-size: 2rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-grow: 1;
+  column-gap: 2rem;
+}
+
+.header-nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  /* transition: all 0.5s ease-in-out; */
+  text-decoration: none;
+  letter-spacing: 0.07rem;
+  color: var(--text-light);
+  border: 0.2rem solid transparent;
+  /* background: var(--nav-button-highlight) */
+}
+
+@keyframes before-anim {
+  from {
+    border: 0.1rem solid var(--nav-button-highlight);
+    top: -0.2rem;
+    left: -0.2rem;
+  }
+  to {
+    border: 0.1rem solid var(--nav-button-highlight);
+    top: 0.1rem;
+    left: 0.1rem;
+  }
+}
+
+@keyframes after-anim {
+  from {
+    border: 0.1rem solid var(--nav-button-highlight);
+    right: -0.2rem;
+    bottom: -0.2rem;
+  }
+  to {
+    border: 0.1rem solid var(--nav-button-highlight);
+    right: 0.1rem;
+    bottom: 0.1rem;
+  }
+}
+
+.header-nav-link:hover,
+.header-nav-link:focus {
+  text-decoration: none;
+  color: var(--nav-button-highlight);
+  background-color: transparent;
+}
+
+.header-nav-link:hover:before,
+.header-nav-link:focus:before,
+.header-nav-link:hover:after,
+.header-nav-link:focus:after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+}
+
+.header-nav-link:hover:before,
+.header-nav-link:focus:before {
+  animation-name: before-anim;
+}
+
+.header-nav-link:hover:after,
+.header-nav-link:focus:after {
+  animation-name: after-anim;
+}
