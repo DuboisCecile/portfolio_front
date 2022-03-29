@@ -1,6 +1,6 @@
-import "./assets/styles/index.css";
-import Header from "./components/Header";
-import Main from "./Main";
+import './assets/styles/index.css';
+import Header from './components/Header';
+import Main from './Main';
 
 function App() {
   return (
