@@ -33,34 +33,32 @@ export default function Header() {
 
   return (
     <header>
-      <div id="responsive-header">
-        <div id="logo-and-burger-div">
-          <NavLink className="logo-font" path="/" to="/">
-            Cécile Dubois
-          </NavLink>
-          <button id="btn-burger" type="button" onClick={handleBurgerToggle}>
-            <div className="burger-line" />
-            <div className="burger-line" />
-            <div className="burger-line" />
-          </button>
-        </div>
-        <div className={`${openedBurgerMenu ? 'opened' : 'hidden'}`} id="menu">
-          <NavLink to="/" className="menu-link" onClick={closeBurger}>
-            Home
-          </NavLink>
-          <NavLink to="/" className="menu-link" onClick={closeBurger}>
-            Pourquoi ?
-          </NavLink>
-          <NavLink to="/who" className="menu-link" onClick={closeBurger}>
-            Qui suis-je ?
-          </NavLink>
-          <NavLink to="/" className="menu-link" onClick={closeBurger}>
-            Portfolio
-          </NavLink>
-          <NavLink to="/" className="menu-link" onClick={closeBurger}>
-            Contact
-          </NavLink>
-        </div>
+      <div id="logo-and-burger-div">
+        <NavLink className="logo-font" path="/" to="/">
+          Cécile Dubois
+        </NavLink>
+        <button id="btn-burger" type="button" onClick={handleBurgerToggle}>
+          <div className="burger-line" />
+          <div className="burger-line" />
+          <div className="burger-line" />
+        </button>
+      </div>
+      <div className={`${openedBurgerMenu ? 'opened' : 'hidden'}`} id="menu">
+        <NavLink to="/" className="menu-link" onClick={closeBurger}>
+          Home
+        </NavLink>
+        <NavLink to="/" className="menu-link" onClick={closeBurger}>
+          Mon travail
+        </NavLink>
+        <NavLink to="/who" className="menu-link" onClick={closeBurger}>
+          Qui suis-je ?
+        </NavLink>
+        <NavLink to="/" className="menu-link" onClick={closeBurger}>
+          Portfolio
+        </NavLink>
+        <NavLink to="/" className="menu-link" onClick={closeBurger}>
+          Contact
+        </NavLink>
       </div>
     </header>
   );
