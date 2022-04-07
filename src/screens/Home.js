@@ -1,4 +1,5 @@
 // import { useEffect } from 'react';
+import '../assets/styles/home.css';
 
 import WallPoster from '../assets/images/mur_affiche.jpg';
 
@@ -94,7 +95,6 @@ export default function Home() {
 
   return (
     <div id="home">
-      {/*  */}
       <div id="home-image">
         <img id="home-image" src={WallPoster} alt="Wall with posters" />
       </div>

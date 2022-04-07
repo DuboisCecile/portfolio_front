@@ -32,16 +32,6 @@ a {
   background-color: var(--background-black);
 }
 
-.img-100 {
-  width: 100vw;
-}
-
-.text-block {
-  color: var(--text-light);
-  padding: 0.8rem;
-  white-space: pre-line;
-}
-
 /* ************************ */
 /* ******** HEADER ******** */
 /* ************************ */
@@ -186,8 +176,7 @@ header {
   height: 25rem;
   align-items: flex-start;
   overflow: hidden;
-  background: red;
-  /* var(--background-black); */
+  background: var(--background-black);
   z-index: 5;
   transition: height 1s ease-in-out;
 }
@@ -263,42 +252,17 @@ header {
 }
 
 /* *************************** */
-/* ******** PAGES ******** */
+/* ********** PAGES ********** */
 /* *************************** */
-.inline-photo {
-  border: 1em solid #fff;
-  border-bottom: 4em solid #fff;
-  border-radius: 0.25em;
-  box-shadow: 1em 1em 2em 0.25em rgba(0, 0, 0, 0.2);
-  margin: 2em auto;
-  max-width: 600px;
-  opacity: 0;
-  -webkit-transform: translateY(4em) rotateZ(-5deg);
-  transform: translateY(4em) rotateZ(-5deg);
-  -webkit-transition: opacity 0.3s 0.25s ease-out,
-    -webkit-transform 4s 0.25s cubic-bezier(0, 1, 0.3, 1);
-  transition: opacity 0.3s 0.25s ease-out,
-    -webkit-transform 4s 0.25s cubic-bezier(0, 1, 0.3, 1);
-  transition: transform 4s 0.25s cubic-bezier(0, 1, 0.3, 1),
-    opacity 0.3s 0.25s ease-out;
-  transition: transform 4s 0.25s cubic-bezier(0, 1, 0.3, 1),
-    opacity 0.3s 0.25s ease-out,
-    -webkit-transform 4s 0.25s cubic-bezier(0, 1, 0.3, 1);
-  width: 90%;
 
-  will-change: transform, opacity;
-}
-
-.inline-photo.is-visible {
-  opacity: 1;
-  -webkit-transform: rotateZ(-2deg);
-  transform: rotateZ(-2deg);
-}
+/* .img-100 {
+  width: 100vw;
+} */
 
 /* *************************** */
 /* ******** HOME PAGE ******** */
 /* *************************** */
-#home-image {
+/* #home-image {
   width: 100%;
   mask-image: url('../images/video-clip-mask.png?v=1');
   mask-size: 1800% 100%;
@@ -313,11 +277,19 @@ header {
   to {
     mask-position: 100% 50%;
   }
-}
+} */
 
 /* *************************** */
 /* ******** WHO AM I ******** */
 /* *************************** */
+/* 
+#who {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #rhino-frame {
   margin: 2rem;
   position: relative;
@@ -325,7 +297,7 @@ header {
   border-width: 0.5rem;
   border-style: solid;
   /* border-image: linear-gradient(to right bottom, #260b3c, #a053df); */
-  border-image: linear-gradient(
+/*border-image: linear-gradient(
     to right bottom,
     #cfc09f 22%,
 
@@ -337,20 +309,8 @@ header {
 #rhino {
   position: absolute;
   width: 85vw;
-}
+} */
 
-.fade-in {
-  animation: fade-in 2s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 /* ******************************* */
 /* ******** MEDIA QUERIES ******** */
 /* ******************************* */

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Rock+Salt&display=swap');
+@import url('index.css');
+
+/* *************************** */
+/* ******** HOME PAGE ******** */
+/* *************************** */
+#home-image {
+  width: 100%;
+  mask-image: url('../images/video-clip-mask.png?v=1');
+  mask-size: 1800% 100%;
+  -webkit-animation: home-image-mask 3s steps(17) forwards;
+  animation: home-image-mask 3s steps(17) forwards 1s;
+}
+
+@keyframes home-image-mask {
+  from {
+    mask-position: 0% 50%;
+  }
+  to {
+    mask-position: 100% 50%;
+  }
+}
