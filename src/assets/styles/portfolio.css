@@ -1,0 +1,35 @@
+#portfolio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.project {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#motorhome {
+    width: 60vw;
+    margin: 0 auto;
+}
+
+.strong-italic {
+    font-weight: bolder;
+    font-style: italic;
+    text-align: center;
+}
+
+.with-inline-img {
+    line-height: 2.5rem;
+}
+
+.logo-stack {
+    height: 2rem;
+    vertical-align:middle;
+    margin: 0 0.2rem 0 0.5rem;
+}

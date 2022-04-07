@@ -255,61 +255,51 @@ header {
 /* ********** PAGES ********** */
 /* *************************** */
 
+h1 {
+  font-size: 3rem;
+  color: var(--text-light);
+  margin: 1rem 0;
+}
+h2 {
+  margin:0;
+}
+
 .img-100 {
   width: 100vw;
 }
 
-/* *************************** */
-/* ******** HOME PAGE ******** */
-/* *************************** */
-/* #home-image {
-  width: 100%;
-  mask-image: url('../images/video-clip-mask.png?v=1');
-  mask-size: 1800% 100%;
-  -webkit-animation: home-image-mask 3s steps(17) forwards;
-  animation: home-image-mask 3s steps(17) forwards 1s;
+.text-block {
+  color: var(--text-light);
+  padding: 0.8rem;
+  white-space: pre-line;
+  font-size: 1.2rem;
 }
 
-@keyframes home-image-mask {
-  from {
-    mask-position: 0% 50%;
-  }
-  to {
-    mask-position: 100% 50%;
-  }
-} */
-
-/* *************************** */
-/* ******** WHO AM I ******** */
-/* *************************** */
-/* 
-#who {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#rhino-frame {
-  margin: 2rem;
+.text-block-title {
   position: relative;
-  background-color: black;
-  border-width: 0.5rem;
-  border-style: solid;
-  /* border-image: linear-gradient(to right bottom, #260b3c, #a053df); */
-/*border-image: linear-gradient(
-    to right bottom,
-    #cfc09f 22%,
-
-    #3a2c0f 78%
-  );
-  border-image-slice: 1;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin : 1rem 0;
 }
 
-#rhino {
+.text-block-title::before,.text-block-title::after {
   position: absolute;
-  width: 85vw;
-} */
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 0.1rem solid var(--nav-button-highlight);
+}
+
+.text-block-title::before {
+  top: 0.1rem;
+  left: 0.1rem;
+}
+
+.text-block-title::after {
+  right: 0.1rem;
+  bottom: 0.1rem;
+}
 
 /* ******************************* */
 /* ******** MEDIA QUERIES ******** */

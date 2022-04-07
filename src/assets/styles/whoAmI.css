@@ -60,18 +60,9 @@ svg {
   width: 85vw;
 }
 
-.text-block {
-  color: var(--text-light);
-  padding: 0.8rem;
-  white-space: pre-line;
-  font-size: 1.2rem;
-}
 
-.text-block-title {
-  font-size: 2rem;
-  font-weight: bold;
-  /* margin-bottom: 0.5rem; */
-}
+
+
 
 .inline-photo {
   /* border: 1em solid #fff;

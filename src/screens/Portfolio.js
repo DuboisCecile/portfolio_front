@@ -1,306 +1,206 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import '../assets/styles/portfolio.css';
 
-import '../assets/styles/whoAmI.css';
-import { isMobile } from 'react-device-detect';
-
-import Cherry from '../assets/images/cerisier-abeille.jpg';
-import Landscape from '../assets/images/campagne.jpg';
-import Family from '../assets/images/famille.jpg';
-import PlanB from '../assets/images/plan-B.jpg';
-import Brainstorming from '../assets/images/brainstorming.jpg';
-import Yoga from '../assets/images/yoga-01.jpg';
-import YogaSkeleton from '../assets/images/yoga_skeleton.png';
-import ZooMap from '../assets/images/zoo-map.jpg';
-import Computer from '../assets/images/ordinateur.png';
-
-const letterAnim = (
-  <div id="letter-container">
-    <div id="animated-mail">
-      <div id="back-fold" />
-      <div id="letter">
-        <div id="letter-title">
-          Bonjour,
-          <br />
-          <br />
-          Je me permets de vous contacter car j'ai un projet de site web pour
-          mon entreprise de construction de
-        </div>
-      </div>
-      <div id="top-fold" />
-      <div id="enveloppe-body" />
-      <div id="left-fold" />
-    </div>
-    <div id="shadow" />
-  </div>
-);
-
-const animalsImagesList = [
-  { id: 0, src: 'rhino.jpg', alt: 'Rhinocéros blanc' },
-  { id: 1, src: 'makis.jpg', alt: 'Makis cattas' },
-  { id: 2, src: 'panthere.jpg', alt: 'Panthère des neiges' },
-];
-
-const hobbiesImagesList = [
-  { id: 0, src: 'jardinage.jpg', alt: 'Jardinage' },
-  { id: 1, src: 'travail-papier.jpg', alt: 'Travail du papier' },
-  { id: 2, src: 'foret.jpg', alt: 'Promenades dans la nature' },
-  { id: 3, src: 'broderie.jpg', alt: 'Broderie à la machine' },
-  { id: 4, src: 'travail-cuir.jpg', alt: 'Travail du cuir' },
-  { id: 5, src: 'trousse-outils.jpg', alt: 'Bricolage' },
-];
+import Motorhome from '../assets/images/camping-car_isolé.png';
+import LogoReact from '../assets/images/React_logo.png';
+import LogoPHP from '../assets/images/PHP_logo.png';
+import LogoPython from '../assets/images/python_logo.png';
+import LogoCoho from '../assets/images/logo-coho-new-blanc.png';
 
 export default function Portfolio() {
-  const [elementsToShow, setElementsToShow] = useState();
-  const [svgElement, setSvgElement] = useState();
-  const [animalsSliderIndex, setAnimalsSliderIndex] = useState(0);
-  const [hobbiesSliderIndex, setHobbiesSliderIndex] = useState(0);
-
-  const maskedElement = document.querySelector('#mask-circle');
-  const circleFeedback = document.querySelector('#circle-shadow');
-  const svgPoint = new DOMPoint();
-
-  const cursorPoint = (e, svg) => {
-    svgPoint.x = e.clientX;
-    svgPoint.y = e.clientY;
-    return svgPoint.matrixTransform(svg.getScreenCTM().inverse());
-  };
-
-  const update = (svgCoords) => {
-    maskedElement.setAttribute('cx', svgCoords.x);
-    maskedElement.setAttribute('cy', svgCoords.y);
-    circleFeedback.setAttribute('cx', svgCoords.x);
-    circleFeedback.setAttribute('cy', svgCoords.y);
-  };
-
-  const isElementInViewport = (element) => {
-    const rect = element.getBoundingClientRect();
-    return (
-      (rect.top <= 0 && rect.bottom >= 0) ||
-      (rect.bottom >=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.top <=
-          (window.innerHeight || document.documentElement.clientHeight)) ||
-      (rect.top >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight))
-    );
-  };
-
-  const loop = () => {
-    elementsToShow?.forEach((element) => {
-      if (
-        isElementInViewport(element) &&
-        !element.classList.contains('is-visible')
-      ) {
-        element.classList.add('is-visible');
-      } else if (
-        !isElementInViewport(element) &&
-        element.classList.contains('is-visible')
-      ) {
-        element.classList.remove('is-visible');
-      }
-    });
-  };
-
-  useEffect(() => {
-    setElementsToShow(document.querySelectorAll('.show-on-scroll'));
-    setSvgElement(document.querySelector('svg'));
-
-    const animalsTimer = window.setInterval(() => {
-      setAnimalsSliderIndex((index) => (index + 1) % animalsImagesList.length);
-    }, 2000);
-    const hobbiesTimer = window.setInterval(() => {
-      setHobbiesSliderIndex((index) => (index + 1) % hobbiesImagesList.length);
-    }, 2000);
-
-    return () => {
-      window.clearInterval(animalsTimer);
-      window.clearInterval(hobbiesTimer);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (elementsToShow) window.addEventListener('scroll', loop);
-    return () => window.removeEventListener('scroll', loop);
-  }, [elementsToShow]);
-
-  useEffect(() => {
-    if (svgElement) {
-      window.addEventListener(
-        'mousemove',
-        (e) => {
-          update(cursorPoint(e, svgElement));
-        },
-        false
-      );
-
-      document.addEventListener(
-        'touchmove',
-        (e) => {
-          const touch = e.targetTouches[0];
-          if (touch) {
-            update(cursorPoint(touch, svgElement));
-          }
-        },
-        false
-      );
-    }
-  }, [svgElement]);
-
   const requestImageFile = require.context('../assets/images', true);
+
   return (
-    <div id="who">
-      <div className="text-block text-block-title">Qui suis-je ?</div>
-      {/* Skeleton animation */}
-      <div id="who-am-i-container" role="presentation">
-        <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
-          <image
-            id="yoga"
-            className="skeleton-image"
-            href={Yoga}
-            alt="Squelette"
-          />
-        </svg>
-        <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <clipPath id="mask">
-              <circle
-                id="mask-circle"
-                cx="18%"
-                cy="18%"
-                r="10%"
-                style={{ fill: '#ffffff' }}
-              />
-            </clipPath>
-          </defs>
-          <g clipPath="url(#mask)">
-            <rect width="100%" height="100%" fill="#272730" />
-            <image className="skeleton-image" href={YogaSkeleton} />
-          </g>
-          <circle
-            id="circle-shadow"
-            cx="18%"
-            cy="18%"
-            r="10%"
-            style={{ stroke: '#fff', fill: 'transparent', strokeWidth: 5 }}
-          />
-        </svg>
-      </div>
-      <div className="text-block">
-        Si, professionnellement, je suis désormais développeuse web et
-        conceptrice d'applications, je ne l'ai pas toujours été,... et je ne
-        suis pas que cela !
-      </div>
-      <div className="text-block">
-        A l'heure où j'écris ces lignes, je suis en Ardèche, entourée de
-        cerisiers qui commencent à fleurir.
-      </div>
-      <img
-        id="cherry"
-        className="inline-photo show-on-scroll"
-        src={Cherry}
-        alt="Fleurs de cerisier"
-      />
-      <div className="text-block">
-        J'ai toujours vécu à la campagne, je m'y sens très bien, au calme,
-        entourée par la nature.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="countryLandscape"
-        src={Landscape}
-        alt="Paysage de campagne"
-      />
-      <div className="text-block">
-        J'ai d'ailleurs travaillé pendant plus de 20 ans dans un parc
-        zoologique, au contact d'animaux fascinants.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        src={requestImageFile(`./${animalsImagesList[animalsSliderIndex].src}`)}
-        alt={animalsImagesList[animalsSliderIndex].alt}
-      />
-      <div className="text-block">
-        Éthologue de formation, encadrant l'équipe zoologique, le bien-être des
-        animaux ainsi que celui des visiteurs étaient mes priorités.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="family"
-        src={Family}
-        alt="Famille"
-      />
-      <div className="text-block">
-        Extrêmement polyvalente, je pouvais passer d'un soin à un animal à
-        l'accueil de groupes de visiteurs, à une réparation de clôture, puis à
-        un dépannage de matériel de sonorisation, avant d'aller remplir les
-        plannings de mon équipe ou les registres des animaux, ou encore
-        d'accueillir un journaliste.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="zoo"
-        src={ZooMap}
-        alt="Plan de zoo"
-      />
-      <div className="text-block">
-        Ma sensibilité et ma curiosité naturelles me poussent aussi à pratiquer
-        de nombreux loisirs créatifs, à bricoler, me promener dans la nature, ou
-        encore à jardiner.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        src={requestImageFile(`./${hobbiesImagesList[hobbiesSliderIndex].src}`)}
-        alt={hobbiesImagesList[hobbiesSliderIndex].alt}
-      />
-      <div className="text-block">
-        Mon désir de reconversion a coïncidé avec le début de la pandémie, ce
-        qui ne m'a pas réellement perturbée. Je suis très adaptable et
-        résiliente, et lorsque le plan A ne fonctionne pas... je passe
-        rapidement au plan B !
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="planB"
-        src={PlanB}
-        alt="Plan B"
-      />
-      <div className="text-block">
-        Toujours à l'écoute des personnes qui m'entourent, que ce soit mes
-        collègues, mes clients ou toute autre personne participant à un projet,
-        j'ai à coeur de fournir un travail de grande qualité, en adéquation avec
-        les besoins, même si ceux-ci doivent évoluer au fil du temps.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="brainstorming"
-        src={Brainstorming}
-        alt="Brainstorming"
-      />
-      <div className="text-block">
-        Désormais développeuse web, je mets mes compétences à votre disposition
-        pour tout projet de site internet ou d'application.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="website"
-        src={Computer}
-        alt="Site web"
-      />
-      <div className="text-block">
-        N'hésitez pas à me
-        <NavLink id="contact-link" path="/contact" to="/contact">
-          contacter !
-        </NavLink>
-      </div>
-      {isMobile ? (
-        letterAnim
-      ) : (
-        <NavLink path="/contact" to="/contact">
-          {letterAnim}
-        </NavLink>
-      )}
+    <div id="portfolio">
+      <h1>Projets</h1>
+      <section className="project">
+        <h2 className="text-block text-block-title">Projet principal</h2>
+        <img id="motorhome" src={Motorhome} alt="Camping-car" />
+        <div className="text-block">
+          Le projet le plus important que j'ai développé jusqu'à présent est une
+          application de gestion de commandes de camping&#8209;cars, de la part
+          de concessions, auprès de la branche française d'un constructeur
+          italien (qui était mon client).
+        </div>
+        <div className="text-block with-inline-img strong-italic">
+          J'ai développé cette application seule, en créant le frontend avec
+          <img className="logo-stack" src={LogoReact} alt="Logo React" />, et le
+          backend en
+          <img className="logo-stack" src={LogoPHP} alt="Logo PHP" />.
+        </div>
+        <div className="text-block">
+          Cette application devait servir à faire le lien d'une part entre le
+          client et les concessions, qui sont ses propres clients. <br /> Et
+          elle devait, d'autre part, servir à transférer les données de
+          commandes au siège, en Italie, où sont localisées les usines.
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_01.JPG`)}
+          alt="Application camping-cars - contexte"
+        />
+        <div className="text-block strong-italic">
+          L'algorithme de l'application est particulièrement complexe, car il y
+          a en permanence de nombreuses vérifications croisées à faire !
+        </div>
+        <div className="text-block">
+          Les concessionnaires doivent pouvoir passer des commandes de véhicules
+          en choisissant différents paramètres tels que la marque (parmi les 4
+          proposées), le châssis et le type de véhicule. L'application leur
+          propose alors différentes gammes, qui contiennent chacune plusieurs
+          modèles.
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_02.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block">
+          Un camping&#8209;car est quasiment tout le temps personnalisé, grâce à
+          l'ajout d'accessoires. Mais tous les accessoires ne sont pas
+          compatibles avec tous les modèles ! Il faut donc que le constructeur
+          puisse indiquer les compatibilités/incompatiblités dans l'application.
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_03.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block">
+          Les accessoires ne sont pas tous compatibles entre eux. Ils en
+          nécessitent aussi parfois d'autres pour fonctionner : l'application
+          doit ajouter ces derniers automatiquement. <br />
+          C'est le cas d'un autoradio avec une commande au volant :
+          l'application doit supprimer un éventuel autre autoradio, et elle doit
+          aussi ajouter l'accessoire "commandes au volant", si celui-ci n'est
+          pas déjà inclus dans le véhicule.
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_04.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block">
+          Les accessoires sont souvent proposés en packs. Il faut à chaque fois
+          vérifier la compatibilité entre les packs eux-mêmes, ou entre les
+          packs et les accessoires. En effet, on ne peut pas ajouter, en
+          accessoire isolé, un moteur plus puissant que le moteur standard, et
+          en même temps ajouter un pack qui contient aussi un moteur !
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_05.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block">
+          J'ai aussi dû gérer les tarifs, qui diffèrent selon plusieurs
+          critères.
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_06.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+
+        <div className="text-block">
+          L'application, privée, n'est accessible qu'aux administrateurs (le
+          constructeur), et aux concessions clientes. Le constructeur doit
+          pouvoir gérer les différents paramètres liés aux concessions : quelles
+          marques (sur les quatre) cette concession vend-elle ? Quels sont ses
+          prévisions de vente à l'année ?
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_07.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block">
+          Enfin, il faut bien évidemment gérer les comptes des administrateurs
+          et des utilisateurs
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_08.JPG`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block">
+          Afin de faciliter et automatisées la saisie des données (mises à jour
+          au moins une fois par an), j'ai ajouté des modules d'importation des
+          données à partir des fichiers émis par le siège. J'ai aussi créé des
+          modules d'export, en fichiers Excel ou en PDF, selon les besoins.
+        </div>
+        <img
+          className="img-100"
+          src={requestImageFile(`./app-cc_09.jpg`)}
+          alt="Application camping-cars - Commande"
+        />
+        <div className="text-block strong-italic">
+          Cette application est désormais utilisée au quotidien par le
+          constructeur, et plus de 125 concessions.
+        </div>
+      </section>
+      <section className="project">
+        <h2 className="text-block text-block-title">Boîtier Coho</h2>
+        <a href="https://www.mycoho.fr/" target="_blank" rel="noreferrer">
+          <img src={LogoCoho} alt="Logo Coho" />
+        </a>
+        <div className="text-block">
+          Le boîtier Coho est un appareil conçu pour surveiller les chevaux au
+          box. Prise de photos, de vidéos, alertes en cas d'ouverture de porte
+          en dehors des heures autorisées ou si le cheval est couché depuis trop
+          longtemps, ce boîtier et son application associée sont de précieux
+          compagnons pour les propriétaires de chevaux.
+          <br />
+          Les chevaux sont en effet des animaux fragiles, sensibles à des
+          pathologies telles que les coliques, qui peuvent être léthales si un
+          vétérinaire n'intervient pas au plus vite.
+          <br />
+          C'est pourquoi l'application Coho affiche, grâce à une analyse
+          effectuée par une intelligence artificielle, un relevé du comportement
+          du cheval : ses postures (debout, couché sur le ventre, sur le côté),
+          s'il se couche et se relève souvent (portentiel signe de souffrance),
+          s'il est resté longtemps couché (ce qui peut être anormal pour un
+          animal toujours sur le qui-vive).
+          <br />
+          Les données sont enregistrées toutes les 30 secondes, pour chaque
+          cheval.
+        </div>
+        <div className="text-block with-inline-img strong-italic">
+          Je me suis chargée de coder, en Python
+          <img className="logo-stack" src={LogoPython} alt="Logo Python" />, le
+          nettoyage et le résumé des données brutes renvoyées par les boîtiers.
+        </div>
+
+        <div className="text-block">
+          En effet, les données arrivant toutes les 30 secondes sont illisibles
+          en l'état (il y a plus de 2800 données pour chaque cheval en 24h !).
+          <br />
+          En outre, il faut parfois les nettoyer, car les box des chevaux sont
+          souvent très poussiéreux, ou habités par... des araignées qui
+          s'amusent à fausser les données en se promenant sur le capteur&nbsp;!
+          <br />
+          Le programme de résumé/nettoyage tourne en tâche de fond, en
+          permanence, sur le serveur récoltant les données. Ainsi, les
+          propriétaires peuvent consulter les relevés quand ils le souhaitent,
+          que ce soit lors d'une pause café au travail, ou bien depuis le fond
+          de leur lit à 3h du matin !
+        </div>
+
+        <div className="text-block strong-italic">
+          Le boîtier Coho est utilisé par de nombreux cavaliers, dans leurs
+          écuries habituelles ou bien en concours.
+        </div>
+      </section>
+      <section className="project">
+        <h2 className="text-block text-block-title">Autres projets</h2>
+        <div className="text-block">
+          Pendant ma formation à la Wild Code School de Lyon, j'ai développé
+          plusieurs projets, dont un à destination d'un "vrai" client.
+        </div>
+        <div className="text-block strong-italic">
+          Nous travaillions toujours en groupe, en utililsant une méthode Agile,
+          de façon à être les plus efficaces possible.
+        </div>
+      </section>
     </div>
   );
 }
