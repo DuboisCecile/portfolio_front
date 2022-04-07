@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './screens/Home';
 import WhoAmI from './screens/WhoAmI';
 import Contact from './screens/Contact';
+import Portfolio from './screens/Portfolio';
 
 export default function Main() {
   return (
@@ -9,6 +10,7 @@ export default function Main() {
       <Route path="/" element={<Home />} />
       <Route path="/who" element={<WhoAmI />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/portfolio" element={<Portfolio />} />
     </Routes>
   );
 }

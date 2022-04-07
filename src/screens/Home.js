@@ -2,6 +2,7 @@
 import '../assets/styles/home.css';
 
 import WallPoster from '../assets/images/mur_affiche.jpg';
+import Mug from '../assets/images/mug.png';
 
 export default function Home() {
   // const [homeImage, setHomeImage] = useState(null);
@@ -95,8 +96,17 @@ export default function Home() {
 
   return (
     <div id="home">
-      <div id="home-image">
-        <img id="home-image" src={WallPoster} alt="Wall with posters" />
+      <div>
+        <img
+          id="home-image"
+          className="img-100"
+          src={WallPoster}
+          alt="Mur avec des affiches"
+        />
+      </div>
+
+      <div>
+        <img id="mug" className="img-100" src={Mug} alt="Mug" />
       </div>
     </div>
   );

@@ -37,7 +37,12 @@ export default function Header() {
         <NavLink className="logo-font" path="/" to="/">
           Cécile Dubois
         </NavLink>
-        <button id="btn-burger" type="button" onClick={handleBurgerToggle}>
+        <button
+          id="btn-burger"
+          type="button"
+          onClick={handleBurgerToggle}
+          aria-label="Bouton burger"
+        >
           <div className="burger-line" />
           <div className="burger-line" />
           <div className="burger-line" />
@@ -53,10 +58,10 @@ export default function Header() {
         <NavLink to="/who" className="menu-link" onClick={closeBurger}>
           Qui suis-je ?
         </NavLink>
-        <NavLink to="/" className="menu-link" onClick={closeBurger}>
+        <NavLink to="/portfolio" className="menu-link" onClick={closeBurger}>
           Portfolio
         </NavLink>
-        <NavLink to="/" className="menu-link" onClick={closeBurger}>
+        <NavLink to="/contact" className="menu-link" onClick={closeBurger}>
           Contact
         </NavLink>
       </div>

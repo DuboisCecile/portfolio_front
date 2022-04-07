@@ -50,7 +50,7 @@ const hobbiesImagesList = [
   { id: 5, src: 'trousse-outils.jpg', alt: 'Bricolage' },
 ];
 
-export default function WhoAmI() {
+export default function Portfolio() {
   const [elementsToShow, setElementsToShow] = useState();
   const [svgElement, setSvgElement] = useState();
   const [animalsSliderIndex, setAnimalsSliderIndex] = useState(0);
