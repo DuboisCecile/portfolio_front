@@ -150,157 +150,167 @@ export default function WhoAmI() {
 
   const requestImageFile = require.context('../assets/images', true);
   return (
-    <div id="who">
-      <div className="text-block text-block-title">Qui suis-je ?</div>
-      {/* Skeleton animation */}
-      <div id="who-am-i-container" role="presentation">
-        <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
-          <image
-            id="yoga"
-            className="skeleton-image"
-            href={Yoga}
-            alt="Squelette"
-          />
-        </svg>
-        <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <clipPath id="mask">
-              <circle
-                id="mask-circle"
-                cx="18%"
-                cy="18%"
-                r="10%"
-                style={{ fill: '#ffffff' }}
-              />
-            </clipPath>
-          </defs>
-          <g clipPath="url(#mask)">
-            <rect width="100%" height="100%" fill="#272730" />
-            <image className="skeleton-image" href={YogaSkeleton} />
-          </g>
-          <circle
-            id="circle-shadow"
-            cx="18%"
-            cy="18%"
-            r="10%"
-            style={{ stroke: '#fff', fill: 'transparent', strokeWidth: 5 }}
-          />
-        </svg>
+    <div className="page-container">
+      <div className="page-content">
+        {isMobile && <div className="text-block page-title">Qui suis-je ?</div>}
+
+        {/* Skeleton animation */}
+        <div id="who-am-i-container" role="presentation">
+          <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
+            <image
+              id="yoga"
+              className="skeleton-image"
+              href={Yoga}
+              alt="Squelette"
+            />
+          </svg>
+          <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="mask">
+                <circle
+                  id="mask-circle"
+                  cx="18%"
+                  cy="18%"
+                  r="10%"
+                  style={{ fill: '#ffffff' }}
+                />
+              </clipPath>
+            </defs>
+            <g clipPath="url(#mask)">
+              <rect width="100%" height="100%" fill="#272730" />
+              <image className="skeleton-image" href={YogaSkeleton} />
+            </g>
+            <circle
+              id="circle-shadow"
+              cx="18%"
+              cy="18%"
+              r="10%"
+              style={{ stroke: '#fff', fill: 'transparent', strokeWidth: 5 }}
+            />
+          </svg>
+        </div>
+
+        <div className="text-block">
+          Si, professionnellement, je suis désormais développeuse web et
+          conceptrice d'applications, je ne l'ai pas toujours été,... et je ne
+          suis pas que cela !
+          <br />
+          <br />A l'heure où j'écris ces lignes, je suis en Ardèche, entourée de
+          cerisiers qui commencent à fleurir.
+        </div>
+        <img
+          id="cherry"
+          className="inline-photo show-on-scroll"
+          src={Cherry}
+          alt="Fleurs de cerisier"
+        />
+        <div className="text-block">
+          J'ai toujours vécu à la campagne, je m'y sens très bien, au calme,
+          entourée par la nature.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          id="countryLandscape"
+          src={Landscape}
+          alt="Paysage de campagne"
+        />
+        <div className="text-block">
+          J'ai d'ailleurs travaillé pendant plus de 20 ans dans un parc
+          zoologique, au contact d'animaux fascinants.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          src={requestImageFile(
+            `./${animalsImagesList[animalsSliderIndex].src}`
+          )}
+          alt={animalsImagesList[animalsSliderIndex].alt}
+        />
+        <div className="text-block">
+          Éthologue de formation, encadrant l'équipe zoologique, le bien-être
+          des animaux ainsi que celui des visiteurs étaient mes priorités.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          id="family"
+          src={Family}
+          alt="Famille"
+        />
+        <div className="text-block">
+          Extrêmement polyvalente, je pouvais passer d'un soin à un animal à
+          l'accueil de groupes de visiteurs, à une réparation de clôture, puis à
+          un dépannage de matériel de sonorisation, avant d'aller remplir les
+          plannings de mon équipe ou les registres des animaux, ou encore
+          d'accueillir un journaliste.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          id="zoo"
+          src={ZooMap}
+          alt="Plan de zoo"
+        />
+        <div className="text-block">
+          Ma sensibilité et ma curiosité naturelles me poussent aussi à
+          pratiquer de nombreux loisirs créatifs, à bricoler, me promener dans
+          la nature, ou encore à jardiner.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          src={requestImageFile(
+            `./${hobbiesImagesList[hobbiesSliderIndex].src}`
+          )}
+          alt={hobbiesImagesList[hobbiesSliderIndex].alt}
+        />
+        <div className="text-block">
+          Mon désir de reconversion a coïncidé avec le début de la pandémie, ce
+          qui ne m'a pas réellement perturbée. Je suis très adaptable et
+          résiliente, et lorsque le plan A ne fonctionne pas... je passe
+          rapidement au plan B !
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          id="planB"
+          src={PlanB}
+          alt="Plan B"
+        />
+        <div className="text-block">
+          Toujours à l'écoute des personnes qui m'entourent, que ce soit mes
+          collègues, mes clients ou toute autre personne participant à un
+          projet, j'ai à coeur de fournir un travail de grande qualité, en
+          adéquation avec les besoins, même si ceux-ci doivent évoluer au fil du
+          temps.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          id="brainstorming"
+          src={Brainstorming}
+          alt="Brainstorming"
+        />
+        <div className="text-block">
+          Désormais développeuse web, je mets mes compétences à votre
+          disposition pour tout projet de site internet ou d'application.
+        </div>
+        <img
+          className="inline-photo show-on-scroll"
+          id="website"
+          src={Computer}
+          alt="Site web"
+        />
+        <div className="self-center">
+          <div className="text-block">
+            N'hésitez pas à me
+            <NavLink id="contact-link" path="/contact" to="/contact">
+              contacter !
+            </NavLink>
+          </div>
+          {isMobile ? (
+            letterAnim
+          ) : (
+            <NavLink path="/contact" to="/contact">
+              {letterAnim}
+            </NavLink>
+          )}
+        </div>
       </div>
-      <div className="text-block">
-        Si, professionnellement, je suis désormais développeuse web et
-        conceptrice d'applications, je ne l'ai pas toujours été,... et je ne
-        suis pas que cela !
-      </div>
-      <div className="text-block">
-        A l'heure où j'écris ces lignes, je suis en Ardèche, entourée de
-        cerisiers qui commencent à fleurir.
-      </div>
-      <img
-        id="cherry"
-        className="inline-photo show-on-scroll"
-        src={Cherry}
-        alt="Fleurs de cerisier"
-      />
-      <div className="text-block">
-        J'ai toujours vécu à la campagne, je m'y sens très bien, au calme,
-        entourée par la nature.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="countryLandscape"
-        src={Landscape}
-        alt="Paysage de campagne"
-      />
-      <div className="text-block">
-        J'ai d'ailleurs travaillé pendant plus de 20 ans dans un parc
-        zoologique, au contact d'animaux fascinants.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        src={requestImageFile(`./${animalsImagesList[animalsSliderIndex].src}`)}
-        alt={animalsImagesList[animalsSliderIndex].alt}
-      />
-      <div className="text-block">
-        Éthologue de formation, encadrant l'équipe zoologique, le bien-être des
-        animaux ainsi que celui des visiteurs étaient mes priorités.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="family"
-        src={Family}
-        alt="Famille"
-      />
-      <div className="text-block">
-        Extrêmement polyvalente, je pouvais passer d'un soin à un animal à
-        l'accueil de groupes de visiteurs, à une réparation de clôture, puis à
-        un dépannage de matériel de sonorisation, avant d'aller remplir les
-        plannings de mon équipe ou les registres des animaux, ou encore
-        d'accueillir un journaliste.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="zoo"
-        src={ZooMap}
-        alt="Plan de zoo"
-      />
-      <div className="text-block">
-        Ma sensibilité et ma curiosité naturelles me poussent aussi à pratiquer
-        de nombreux loisirs créatifs, à bricoler, me promener dans la nature, ou
-        encore à jardiner.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        src={requestImageFile(`./${hobbiesImagesList[hobbiesSliderIndex].src}`)}
-        alt={hobbiesImagesList[hobbiesSliderIndex].alt}
-      />
-      <div className="text-block">
-        Mon désir de reconversion a coïncidé avec le début de la pandémie, ce
-        qui ne m'a pas réellement perturbée. Je suis très adaptable et
-        résiliente, et lorsque le plan A ne fonctionne pas... je passe
-        rapidement au plan B !
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="planB"
-        src={PlanB}
-        alt="Plan B"
-      />
-      <div className="text-block">
-        Toujours à l'écoute des personnes qui m'entourent, que ce soit mes
-        collègues, mes clients ou toute autre personne participant à un projet,
-        j'ai à coeur de fournir un travail de grande qualité, en adéquation avec
-        les besoins, même si ceux-ci doivent évoluer au fil du temps.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="brainstorming"
-        src={Brainstorming}
-        alt="Brainstorming"
-      />
-      <div className="text-block">
-        Désormais développeuse web, je mets mes compétences à votre disposition
-        pour tout projet de site internet ou d'application.
-      </div>
-      <img
-        className="inline-photo show-on-scroll"
-        id="website"
-        src={Computer}
-        alt="Site web"
-      />
-      <div className="text-block">
-        N'hésitez pas à me
-        <NavLink id="contact-link" path="/contact" to="/contact">
-          contacter !
-        </NavLink>
-      </div>
-      {isMobile ? (
-        letterAnim
-      ) : (
-        <NavLink path="/contact" to="/contact">
-          {letterAnim}
-        </NavLink>
-      )}
     </div>
   );
 }

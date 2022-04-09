@@ -1,11 +1,11 @@
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 
-export default function Contact() {
+export default function Work() {
   return (
     <div className="page-container">
       <div className="page-content">
-        {isMobile && <div className="text-block page-title">Contact</div>}
+        {isMobile && <div className="text-block page-title">Mon travail</div>}
         <div className="text-block section-title">
           En cours de construction ! <br /> Un peu de patience...
         </div>

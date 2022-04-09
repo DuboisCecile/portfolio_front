@@ -99,14 +99,14 @@ export default function Home() {
       <div>
         <img
           id="home-image"
-          className="img-100"
+          className="img-resp"
           src={WallPoster}
           alt="Mur avec des affiches"
         />
       </div>
 
       <div>
-        <img id="mug" className="img-100" src={Mug} alt="Mug" />
+        <img id="mug" className="img-resp" src={Mug} alt="Mug" />
       </div>
     </div>
   );

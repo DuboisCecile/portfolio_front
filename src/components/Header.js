@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 export default function Header() {
   const [openedBurgerMenu, setOpenedBurgerMenu] = useState(false);
   const [btnBurger, setBtnBurger] = useState(null);
+
   useEffect(() => {
     setBtnBurger(document.querySelector('#btn-burger'));
   }, []);
@@ -52,11 +53,11 @@ export default function Header() {
         <NavLink to="/" className="menu-link" onClick={closeBurger}>
           Home
         </NavLink>
-        <NavLink to="/" className="menu-link" onClick={closeBurger}>
-          Mon travail
-        </NavLink>
         <NavLink to="/who" className="menu-link" onClick={closeBurger}>
           Qui suis-je ?
+        </NavLink>
+        <NavLink to="/work" className="menu-link" onClick={closeBurger}>
+          Mon travail
         </NavLink>
         <NavLink to="/portfolio" className="menu-link" onClick={closeBurger}>
           Portfolio
