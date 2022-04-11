@@ -3,6 +3,10 @@ import Header from './components/Header';
 import Main from './Main';
 
 function App() {
+  window.onbeforeunload = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="App">
       <Header />

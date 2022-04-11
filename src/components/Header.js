@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <header>
       <div id="logo-and-burger-div">
-        <NavLink className="logo-font" path="/" to="/">
+        <NavLink className="logo-font" path="/" to="/" onClick={closeBurger}>
           Cécile Dubois
         </NavLink>
         <button
@@ -56,8 +56,8 @@ export default function Header() {
         <NavLink to="/who" className="menu-link" onClick={closeBurger}>
           Qui suis-je ?
         </NavLink>
-        <NavLink to="/work" className="menu-link" onClick={closeBurger}>
-          Mon travail
+        <NavLink to="/skills" className="menu-link" onClick={closeBurger}>
+          Mes compétences
         </NavLink>
         <NavLink to="/portfolio" className="menu-link" onClick={closeBurger}>
           Portfolio

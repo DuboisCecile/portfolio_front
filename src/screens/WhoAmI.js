@@ -104,6 +104,7 @@ export default function WhoAmI() {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setElementsToShow(document.querySelectorAll('.show-on-scroll'));
     setSvgElement(document.querySelector('svg'));
 
@@ -240,7 +241,7 @@ export default function WhoAmI() {
           l'accueil de groupes de visiteurs, à une réparation de clôture, puis à
           un dépannage de matériel de sonorisation, avant d'aller remplir les
           plannings de mon équipe ou les registres des animaux, ou encore
-          d'accueillir un journaliste.
+          accueillir un journaliste.
         </div>
         <img
           className="inline-photo show-on-scroll"

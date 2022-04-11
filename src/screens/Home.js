@@ -1,10 +1,14 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import '../assets/styles/home.css';
 
 import WallPoster from '../assets/images/mur_affiche.jpg';
 import Mug from '../assets/images/mug.png';
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // const [homeImage, setHomeImage] = useState(null);
   // setHomeImage(document.querySelector('#home-image'));
 
@@ -95,18 +99,21 @@ export default function Home() {
   // }, []);
 
   return (
-    <div id="home">
-      <div>
-        <img
-          id="home-image"
-          className="img-resp"
-          src={WallPoster}
-          alt="Mur avec des affiches"
-        />
-      </div>
+    <div className="page-container">
+      <div className="page-content">
+        <h1 className="text-block page-title">Développeuse web</h1>
+        <div>
+          <img
+            id="home-image"
+            className="img-resp"
+            src={WallPoster}
+            alt="Mur avec des affiches"
+          />
+        </div>
 
-      <div>
-        <img id="mug" className="img-resp" src={Mug} alt="Mug" />
+        <div>
+          <img id="mug" className="img-resp" src={Mug} alt="Mug" />
+        </div>
       </div>
     </div>
   );

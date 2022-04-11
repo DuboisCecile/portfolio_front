@@ -10,7 +10,7 @@
   mask-image: url('../images/video-clip-mask.png?v=1');
   mask-size: 1800% 100%;
   -webkit-animation: home-image-mask 3s steps(17) forwards;
-  animation: home-image-mask 3s steps(17) forwards 1s;
+  animation: home-image-mask 2s steps(17) forwards 0.5s;
 }
 
 @keyframes home-image-mask {
@@ -19,5 +19,23 @@
   }
   to {
     mask-position: 100% 50%;
+  }
+}
+
+#mug {
+  animation: slide-in-elliptic-top-fwd 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both 2.5s;
+}
+
+@keyframes slide-in-elliptic-top-fwd {
+  0% {
+    transform: translateY(-600px) rotateX(-30deg) scale(0);
+    transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotateX(0) scale(1);
+    transform-origin: 50% 1400px;
+    opacity: 1;
   }
 }

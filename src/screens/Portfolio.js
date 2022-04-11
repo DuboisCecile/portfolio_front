@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import '../assets/styles/portfolio.css';
 import { isMobile } from 'react-device-detect';
 
@@ -10,18 +11,22 @@ import LogoCoho from '../assets/images/logo-coho-new-blanc.png';
 export default function Portfolio() {
   const requestImageFile = require.context('../assets/images', true);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="page-container">
       <div className="page-content">
         {isMobile && <div className="text-block page-title">Porfolio</div>}
         <section className="project">
           <div className="text-block section-title">
-            Projet principal - Commandes de camping&#8209;cars
+            Application de commandes de camping&#8209;cars
           </div>
           <img id="motorhome" src={Motorhome} alt="Camping-car" />
           <div className="text-block">
             Le projet le plus important que j'ai développé jusqu'à présent est
-            une application de gestion de commandes de camping&#8209;cars, de la
+            une application de gestion de commandes de camping&#8209;cars de la
             part de concessions, auprès de la branche française d'un
             constructeur italien (qui était mon client).
           </div>
@@ -32,10 +37,16 @@ export default function Portfolio() {
             <img className="logo-stack" src={LogoPHP} alt="Logo PHP" />.
           </div>
           <div className="text-block">
-            Cette application devait servir à faire le lien d'une part entre le
-            client et les concessions, qui sont ses propres clients. <br /> Et
-            elle devait, d'autre part, servir à transférer les données de
+            Cette application sert, d'une part, à faire le lien entre le
+            constructeur et ses propres clients, les concessions. Chaque
+            concessionnaire peut directement passer sa commande via
+            l'application.
+            <br />
+            Et d'autre part, elle permet de transmettre toutes les données de
             commandes au siège, en Italie, où sont localisées les usines.
+            <br />
+            L'application est donc utilisée tout le long du processus de
+            commande.
           </div>
           <img
             className="img-resp"
@@ -128,11 +139,10 @@ export default function Portfolio() {
             alt="Application camping-cars - Commande"
           />
           <div className="text-block">
-            Afin de faciliter et automatisées la saisie des données (mises à
-            jour au moins une fois par an), j'ai ajouté des modules
-            d'importation des données à partir des fichiers émis par le siège.
-            J'ai aussi créé des modules d'export, en fichiers Excel ou en PDF,
-            selon les besoins.
+            Afin de faciliter et automatiser la saisie des données (mises à jour
+            au moins une fois par an), j'ai ajouté des modules d'importation des
+            données à partir des fichiers émis par le siège. J'ai aussi créé des
+            modules d'export, en fichiers Excel ou en PDF, selon les besoins.
           </div>
           <img
             className="img-resp"
@@ -144,8 +154,11 @@ export default function Portfolio() {
             constructeur, et plus de 125 concessions.
           </div>
         </section>
+        <div className="divider" />
         <section className="project">
-          <div className="text-block section-title">Boîtier Coho</div>
+          <div className="text-block section-title">
+            Sous-traitance d'un bloc d'application pour le boîtier Coho
+          </div>
           <a href="https://www.mycoho.fr/" target="_blank" rel="noreferrer">
             <img src={LogoCoho} alt="Logo Coho" />
           </a>
@@ -155,7 +168,13 @@ export default function Portfolio() {
             en dehors des heures autorisées ou si le cheval est couché depuis
             trop longtemps, ce boîtier et son application associée sont de
             précieux compagnons pour les propriétaires de chevaux.
-            <br />
+          </div>
+          <img
+            className="img-resp"
+            src={requestImageFile(`./boitier-coho.jpg`)}
+            alt="Boîtier Coho"
+          />
+          <div className="text-block">
             Les chevaux sont en effet des animaux fragiles, sensibles à des
             pathologies telles que les coliques, qui peuvent être léthales si un
             vétérinaire n'intervient pas au plus vite.
@@ -171,29 +190,32 @@ export default function Portfolio() {
             cheval.
           </div>
           <div className="text-block with-inline-img strong-italic">
-            Je me suis chargée de coder, en Python
+            J'ai été chargée de coder, en Python
             <img className="logo-stack" src={LogoPython} alt="Logo Python" />,
-            le nettoyage et le résumé des données brutes renvoyées par les
+            la correction et le résumé des données brutes renvoyées par les
             boîtiers.
           </div>
-
           <div className="text-block">
             En effet, les données arrivant toutes les 30 secondes sont
             illisibles en l'état (il y a plus de 2800 données pour chaque cheval
             en 24h !).
             <br />
-            En outre, il faut parfois les nettoyer, car les box des chevaux sont
-            souvent très poussiéreux, ou habités par... des araignées qui
-            s'amusent à fausser les données en se promenant sur le
-            capteur&nbsp;!
+            En outre, il faut parfois les corriger en éliminant les données
+            aberrantes. Les box des chevaux sont souvent très poussiéreux, et
+            parfois aussi² habités par... des araignées qui s'amusent à fausser
+            les données en se promenant sur le capteur&nbsp;!
             <br />
-            Le programme de résumé/nettoyage tourne en tâche de fond, en
+            Le programme de résumé/correction tourne en tâche de fond, en
             permanence, sur le serveur récoltant les données. Ainsi, les
             propriétaires peuvent consulter les relevés quand ils le souhaitent,
-            que ce soit lors d'une pause café au travail, ou bien depuis le fond
-            de leur lit à 3h du matin !
+            en temps réel, que ce soit lors d'une pause café au travail, ou bien
+            depuis le fond de leur lit à 3h du matin !
           </div>
-
+          <img
+            className="img-resp"
+            src={requestImageFile(`./portable_coho.jpg`)}
+            alt="Capture d'écran de l'application Coho"
+          />
           <div className="text-block strong-italic">
             Le boîtier Coho est utilisé par de nombreux cavaliers, dans leurs
             écuries habituelles ou bien en concours.
@@ -203,11 +225,17 @@ export default function Portfolio() {
           <div className="text-block section-title">Autres projets</div>
           <div className="text-block">
             Pendant ma formation à la Wild Code School de Lyon, j'ai développé
-            plusieurs projets, dont un à destination d'un "vrai" client.
+            plusieurs projets, dont un à destination d'un vrai client final.
           </div>
+          <img
+            className="img-resp"
+            src={requestImageFile(`./capture-ecran-gamelle.png`)}
+            alt="Application Gamelle - Extension"
+          />
           <div className="text-block strong-italic">
-            Nous travaillions toujours en groupe, en utililsant une méthode
-            Agile, de façon à être les plus efficaces possible.
+            Pour ces projets, nous avons travaillé en groupe, en utilisant une
+            méthodologie Agile (Scrum), de façon à être les plus efficaces
+            possible.
           </div>
         </section>
       </div>

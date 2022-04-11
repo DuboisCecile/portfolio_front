@@ -3,7 +3,7 @@ import Home from './screens/Home';
 import WhoAmI from './screens/WhoAmI';
 import Contact from './screens/Contact';
 import Portfolio from './screens/Portfolio';
-import Work from './screens/Work';
+import Skills from './screens/Skills';
 
 export default function Main() {
   return (
@@ -12,7 +12,7 @@ export default function Main() {
       <Route path="/who" element={<WhoAmI />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/portfolio" element={<Portfolio />} />
-      <Route path="/work" element={<Work />} />
+      <Route path="/skills" element={<Skills />} />
     </Routes>
   );
 }
