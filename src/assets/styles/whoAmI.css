@@ -6,12 +6,14 @@
 /* ******** WHO AM I ******** */
 /* *************************** */
 
-svg {
+.who-am-i-svg {
   position: absolute;
   display: block;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100vw;
+  height: calc(100vw * 936 / 1667);
 }
 
 #who-am-i-container {
@@ -19,11 +21,6 @@ svg {
   width: 100vw;
   height: calc(100vw * 936 / 1667);
   touch-action: none;
-}
-
-.who-am-i-svg {
-  width: 100vw;
-  height: calc(100vw * 936 / 1667);
 }
 
 .skeleton-image {

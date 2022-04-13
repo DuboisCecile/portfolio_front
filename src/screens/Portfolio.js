@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import '../assets/styles/portfolio.css';
 import { isMobile } from 'react-device-detect';
 
+import '../assets/styles/portfolio.css';
 import Motorhome from '../assets/images/camping-car_isolé.png';
 import LogoReact from '../assets/images/React_logo.png';
 import LogoPHP from '../assets/images/PHP_logo.png';
