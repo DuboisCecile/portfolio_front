@@ -8,9 +8,9 @@ import Skills from './screens/Skills';
 export default function Main() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" exact element={<Home />} />
       <Route path="/who" element={<WhoAmI />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" exact element={<Contact />} />
       <Route path="/portfolio" element={<Portfolio />} />
       <Route path="/skills" element={<Skills />} />
     </Routes>

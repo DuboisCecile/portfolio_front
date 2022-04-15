@@ -47,6 +47,8 @@ header {
 .logo-font {
   font-family: 'Rock Salt', cursive;
   font-size: 1.8rem;
+  color: var(--text-light);
+  text-align: center;
 }
 
 #logo-and-burger-div {
@@ -340,9 +342,9 @@ h2 {
 }
 
 .divider {
-  margin: 2rem 0;
   height: 0.5rem;
   width: 80vw;
+  max-width: 30rem;
   background: linear-gradient(
     90deg,
     var(--background-black),

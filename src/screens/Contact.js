@@ -25,9 +25,10 @@ export default function Contact() {
 
   const sendEmail = async (form) => {
     try {
-      await API.post(`${process.env.REACT_APP_API_BASE_URL}/contactmail`, form);
+      await API.post(`${process.env.REACT_APP_API_BASE_URL}/contactMail`, form);
       toast.success(<span>Votre message a bien été envoyé&nbsp;!</span>);
     } catch (err) {
+      toast.error(JSON.stringify(err));
       toast.error(
         <span>Il y a eu un problème lors de l'envoi du message&nbsp;!</span>
       );

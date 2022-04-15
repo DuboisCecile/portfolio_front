@@ -3,11 +3,43 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 2rem 0;
 }
 
-#motorhome {
-  width: 60vw;
+.project .framed-img {
+  width: 80vw;
+  max-width: 20rem;
   margin: 0 auto;
+  padding: 1.2rem;
+  background-color: black;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-image: linear-gradient(to right bottom, #cfc09f 22%, #3a2c0f 78%);
+  /* border-image: linear-gradient(to right bottom, #260b3c, #a053df); */
+  border-image-slice: 1;
+}
+
+#hover-motorhome,
+#hover-coho,
+#hover-portfolio,
+#hover-others {
+  display: none;
+}
+
+#motorhome:hover #hover-motorhome,
+#coho:hover #hover-coho,
+#portfolio:hover #hover-portfolio,
+#others:hover #hover-others {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-img {
+  font-size: 2.5rem;
+  color: var(--text-light);
+  text-align: center;
 }
 
 .with-inline-img {
@@ -21,7 +53,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  #motorhome {
+  /* #motorhome {
     width: 20vw;
-  }
+  } */
 }
