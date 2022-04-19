@@ -23,7 +23,7 @@
   touch-action: none;
 }
 
-.skeleton-image {
+.yoga-image {
   width: 100vw;
   height: calc(100vw * 936 / 1667);
 }
@@ -213,11 +213,6 @@
   width: 15.6rem;
 }
 
-#contact-link {
-  font-weight: bolder;
-  margin-left: 0.5rem;
-}
-
 /* ******************************* */
 /* ******** MEDIA QUERIES ******** */
 /* ******************************* */
@@ -232,7 +227,7 @@
     height: calc(60vw * 936 / 1667);
   }
 
-  .skeleton-image {
+  .yoga-image {
     width: 60vw;
     height: calc(60vw * 936 / 1667);
   }

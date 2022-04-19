@@ -1,102 +1,64 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../assets/styles/home.css';
 
 import WallPoster from '../assets/images/mur_affiche.jpg';
 import Mug from '../assets/images/mug.png';
 
 export default function Home() {
+  const mugRef = useRef();
+
+  const [elementsInViewport, setElementsInViewport] = useState(null);
+  const inViewport = (entries) => {
+    entries.forEach((entry) => {
+      // console.log(entry.isIntersecting);
+      // console.log(entry.intersectionRatio);
+      // entry.target.classList.toggle("is-inViewport", entry.isIntersecting);
+      mugRef.current.classList.toggle('is-inViewport', entry.isIntersecting);
+    });
+  };
+
+  const obs = new IntersectionObserver(inViewport);
+  const obsOptions = {
+    // threshold: 1,
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    setElementsInViewport(document.querySelectorAll('#mug'));
   }, []);
 
-  // const [homeImage, setHomeImage] = useState(null);
-  // setHomeImage(document.querySelector('#home-image'));
+  useEffect(() => {
+    if (elementsInViewport)
+      elementsInViewport.forEach((element) => {
+        obs.observe(element, obsOptions);
+      });
+  }, [elementsInViewport]);
 
-  // $(window).scroll(function(e) {
-  //   frames = 17;
-  //   step = ($("body").height() - $(window).height()) / frames;
-  //   frameStep = parseInt($(window).scrollTop() / step);
-  //   maskPosition = 100 / frames * frameStep;
-  //   $("#cover").css({
-  //     "mask-position": maskPosition + "% 50%",
-  //     "-webkit-mask-position": maskPosition + "% 50%"
+  // const inViewport = (entries) => {
+  //   entries.forEach((entry) => {
+  //     console.log(entry.isIntersecting);
+  //     console.log(entry.intersectionRatio);
+  //     entry.target.classList.toggle('is-inViewport', entry.isIntersecting);
   //   });
-  // });
-
-  //   var ignoreClickOnMeElement = document.getElementById('someElementID');
-
-  // document.addEventListener('click', function(event) {
-  //     var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-  //     if (!isClickInsideElement) {
-  //         //Do something click is outside specified element
-  //     }
-  // });
-
-  // const onTouchStart = (e) => {
-  //   const offsets = e.target.getBoundingClientRect();
-  //   const { top, bottom, height } = offsets;
-  //   console.log({ top, bottom, height });
-  //   let y;
-  //   const touchArray = ['touchstart', 'touchmove', 'touchend', 'touchcancel'];
-  //   const clickAndMouseArray = [
-  //     'click',
-  //     'mousedown',
-  //     'mouseup',
-  //     'mousemove',
-  //     'mouseover',
-  //     'mouseout',
-  //     'mouseenter',
-  //     'mouseleave',
-  //   ];
-  //   if (touchArray.includes(e.type)) {
-  //     const touch = e.touches[0] || e.changedTouches[0];
-  //     y = touch.pageY;
-  //   } else if (clickAndMouseArray.includes(e.type)) {
-  //     y = e.clientY;
-  //   }
-
-  //   if (y >= top && y <= bottom) {
-  //     const yPercentInImage = ((y - top) / height) * 100;
-  //     console.log('yPercentInImage', yPercentInImage);
-  //     const frames = 17;
-  //     const stepHeight = height / frames;
-  //     console.log('stepHeight', stepHeight);
-  //     const frameStep = parseInt((y - top) / stepHeight, 10);
-  //     console.log('(y - top)', y - top);
-  //     console.log('frameStep', frameStep);
-  //     const maskPosition = (100 / frames) * frameStep;
-  //     // const prevImage = document.querySelector('#home-image');
-  //     console.log('prev', e.target.style.maskPosition);
-  //     // prevImage.style.maskPosition = `${maskPosition}% center`;
-  //     e.target.style.maskPosition = `${maskPosition}% 50%`;
-  //     console.log('after', e.target.style.maskPosition);
-  //     // eslint-disable-next-line no-void
-  //     // void e.target.offsetWidth;
-  //   }
   // };
 
-  // const onScroll = () => {
-  //   const frames = 17;
-  //   const height =
-  //     document.documentElement.scrollHeight -
-  //     document.documentElement.clientHeight;
-  //   const step = height / frames;
-  //   const topScrollingPosition = document.documentElement.scrollTop;
-  //   const frameStep = parseInt(topScrollingPosition / step, 10);
-  //   const maskPosition = (100 / frames) * frameStep;
-  //   const prevImage = document.querySelector('#home-image');
-  //   console.log('prev', prevImage.style);
-  //   prevImage.style.maskPosition = `${maskPosition}% 50%`;
-  //   console.log('after', prevImage.style);
+  // const obs = new IntersectionObserver(inViewport);
+  // const obsOptions = {
+  //   threshold: 1,
   // };
 
   // useEffect(() => {
-  //   window.addEventListener('scroll', onScroll);
-  //   const homeImage = document.getElementById('home-image');
-  //   homeImage.addEventListener('touchstart', onTouchStart);
-  //   homeImage.addEventListener('click', onTouchStart);
-  //   return () => window.removeEventListener('scroll', onScroll);
+  //   window.scrollTo(0, 0);
+  //   setElementsInViewport(document.querySelectorAll('#mug'));
   // }, []);
+
+  // useEffect(() => {
+  //   if (elementsInViewport)
+  //     elementsInViewport.forEach((element) => {
+  //       obs.observe(element, obsOptions);
+  //     });
+  // }, [elementsInViewport]);
 
   return (
     <div className="page-container">
@@ -110,11 +72,68 @@ export default function Home() {
             alt="Mur avec des affiches"
           />
         </div>
+        <div className="text-block">
+          <p>
+            Vous cherchez un développeur web pour concevoir votre site internet
+            ?
+          </p>
+          <p>
+            L'informatique vous semble un monde obscur et HTML, CSS, Javascript,
+            PHP ou encore Python ne sont pour vous que des gros mots ?
+          </p>
+          <p>
+            Ou bien vous avez besoin d'aide pour concevoir une application ?
+          </p>
+          <p>Je suis votre homme ! Ou plutôt... je suis votre femme !</p>
+          <h2 className="home-h2">
+            Développeuse web fullstack, j'aurai à coeur de remplir les missions
+            que vous voudrez me confier, tout en vous gardant en permanence
+            informé(e) de l'évolution du projet.
+          </h2>
+          <p>
+            Idéalement placée au centre d'un triangle composé de Lyon, Saint
+            Etienne et Valence, je peux facilement venir à votre rencontre dans
+            ces villes, afin que nous puissions faire connaissance.
+            <br />
+            Nous pouvons aussi bien-sûr organiser une rendez-vous en visio, quel
+            que soit l'endroit où vous êtes situé. N'hésitez pas à me contacter
+            <NavLink className="contact-link" path="/contact" to="/contact">
+              ici.
+            </NavLink>
+          </p>
+          <h3>
+            Vous pouvez d'ores et déjà découvrir mes
+            <NavLink className="inline-navlink" to="/portfolio">
+              réalisations
+            </NavLink>
+            , mes
+            <NavLink className="inline-navlink" to="/skills">
+              compétences
+            </NavLink>
+            , et aussi
+            <NavLink className="inline-navlink" to="/who">
+              qui je suis
+            </NavLink>
+            . Alors...
+          </h3>
+        </div>
 
-        <div>
-          <img id="mug" className="img-resp" src={Mug} alt="Mug" />
+        <div id="mug">
+          <img ref={mugRef} className="img-resp" src={Mug} alt="Mug" />
         </div>
       </div>
     </div>
   );
 }
+
+// développeur web 27%
+
+// 755 mots analysés, 18 mots par phrases, 4 min de lecture
+
+// Pour optimiser le  texte, utilisez en priorité les mots suivants :
+
+// web, développeur, mobile, métier, devenir, emploi, salaire, informatique, développement, internet, professionnel, missions, offres, developpeur, compétences, fonctionnalités, titre, devenez, développeuse, découvrez, informatiques, techniques, réalise, alternance, réalisation, technique, programmation, développer, apprendre, savoir, paris, consiste, full, stack, javascript, expert, concevoir, langages, semaines, développeurs, études, concepteur, agence, programmeur, indeed, nouvelles, conception, html, css, évoluer, orientées, appelé, créer, plateformes, apprenez, niveau, métiers, aujourd,
+
+// Groupes de mots régulièrement utilisés :
+
+// web groupe, aujourd hui, web performant, devenez développeur, formation qualifiante, full stack, fiche métier, apprendre coder, front end, orientation education devenir, education devenir développeur, développeuse web cidj, web quelles différences, développeur web junior, adapte environnement mobile, consultant développeur web, évoluer des applications, applications orientées web, chef de projet, recherche un emploi, site emploi mondial,

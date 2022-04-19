@@ -262,10 +262,6 @@ h1 {
   margin: 1rem 0;
 }
 
-h2 {
-  margin: 0;
-}
-
 .strong-italic {
   font-weight: bolder;
   font-style: italic;
@@ -352,6 +348,16 @@ h2 {
     var(--background-black)
   );
   border-radius: 1rem;
+}
+
+.contact-link {
+  font-weight: bolder;
+  margin-left: 0.5rem;
+}
+
+.inline-navlink {
+  text-decoration: underline blink;
+  margin-left: 0.5rem;
 }
 
 /* ******************************* */

@@ -44,10 +44,6 @@ export default function Skills() {
 // INTERACTION DESIGN
 // A key area of focus in my design process is to ensure the best interaction for each situation to guide the user in their digital journey, as this is essential in creating engaging and effective experiences.
 
-// Photography
-// PHOTOGRAPHY
-// Photography is one of my oldest passions. Even though it is just a hobby, the ability to treat and art direct images has been fundamental to my skills as a Designer.
-
 // Prototyping
 // PROTOTYPING
 // I started my career as a web designer. Although I'm no longer a developer, my coding knowledge gives me the ability to prototype even complex ideas

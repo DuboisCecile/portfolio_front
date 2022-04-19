@@ -1,7 +1,7 @@
 import { useForm, FormProvider } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 
-import './assets/styles/index.css';
+// import './assets/styles/index.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import Header from './components/Header';

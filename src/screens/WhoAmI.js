@@ -160,9 +160,9 @@ export default function WhoAmI() {
           <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
             <image
               id="yoga"
-              className="skeleton-image"
+              className="yoga-image"
               href={Yoga}
-              alt="Squelette"
+              alt="Rayons X"
             />
           </svg>
           <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +179,7 @@ export default function WhoAmI() {
             </defs>
             <g clipPath="url(#mask)">
               <rect width="100%" height="100%" fill="#272730" />
-              <image className="skeleton-image" href={YogaSkeleton} />
+              <image className="yoga-image" href={YogaSkeleton} />
             </g>
             <circle
               id="circle-shadow"
@@ -299,7 +299,7 @@ export default function WhoAmI() {
         <div className="self-center">
           <div className="text-block">
             N'hésitez pas à me
-            <NavLink id="contact-link" path="/contact" to="/contact">
+            <NavLink className="contact-link" path="/contact" to="/contact">
               contacter !
             </NavLink>
           </div>
