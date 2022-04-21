@@ -7,14 +7,21 @@ import Mug from '../assets/images/mug.png';
 
 export default function Home() {
   const mugRef = useRef();
-
+  const homeImageRef = useRef();
   const [elementsInViewport, setElementsInViewport] = useState(null);
+
   const inViewport = (entries) => {
     entries.forEach((entry) => {
-      // console.log(entry.isIntersecting);
-      // console.log(entry.intersectionRatio);
-      // entry.target.classList.toggle("is-inViewport", entry.isIntersecting);
-      mugRef.current.classList.toggle('is-inViewport', entry.isIntersecting);
+      if (entry.target.id === 'home-image')
+        homeImageRef.current?.classList.toggle(
+          'home-image-is-inViewport',
+          entry.isIntersecting
+        );
+      if (entry.target.id === 'mug')
+        mugRef.current?.classList.toggle(
+          'mug-is-inViewport',
+          entry.isIntersecting
+        );
     });
   };
 
@@ -25,7 +32,11 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setElementsInViewport(document.querySelectorAll('#mug'));
+    setElementsInViewport(document.querySelectorAll('.checkVP'));
+    return () => {
+      setElementsInViewport(null);
+      obs.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -35,31 +46,6 @@ export default function Home() {
       });
   }, [elementsInViewport]);
 
-  // const inViewport = (entries) => {
-  //   entries.forEach((entry) => {
-  //     console.log(entry.isIntersecting);
-  //     console.log(entry.intersectionRatio);
-  //     entry.target.classList.toggle('is-inViewport', entry.isIntersecting);
-  //   });
-  // };
-
-  // const obs = new IntersectionObserver(inViewport);
-  // const obsOptions = {
-  //   threshold: 1,
-  // };
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  //   setElementsInViewport(document.querySelectorAll('#mug'));
-  // }, []);
-
-  // useEffect(() => {
-  //   if (elementsInViewport)
-  //     elementsInViewport.forEach((element) => {
-  //       obs.observe(element, obsOptions);
-  //     });
-  // }, [elementsInViewport]);
-
   return (
     <div className="page-container">
       <div className="page-content">
@@ -67,7 +53,8 @@ export default function Home() {
         <div>
           <img
             id="home-image"
-            className="img-resp"
+            ref={homeImageRef}
+            className="img-resp checkVP"
             src={WallPoster}
             alt="Mur avec des affiches"
           />
@@ -118,7 +105,7 @@ export default function Home() {
           </h3>
         </div>
 
-        <div id="mug">
+        <div id="mug" className="checkVP">
           <img ref={mugRef} className="img-resp" src={Mug} alt="Mug" />
         </div>
       </div>
