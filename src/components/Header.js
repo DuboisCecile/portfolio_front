@@ -57,7 +57,7 @@ export default function Header() {
           Home
         </NavLink>
         <NavLink to="/who" className="menu-link" onClick={closeBurger}>
-          Qui suis-je ?
+          Qui suis&#8209;je&nbsp;?
         </NavLink>
         <NavLink to="/skills" className="menu-link" onClick={closeBurger}>
           Mes compétences

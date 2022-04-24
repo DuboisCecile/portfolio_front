@@ -1,4 +1,20 @@
+.page-content-portfolio {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .project {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,17 +39,29 @@
 #hover-coho,
 #hover-portfolio,
 #hover-others {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden; /* Hide the element content, while height = 0 */
+  height: 0;
+  opacity: 0;
+  transition: height 0s 1s, opacity 1s 0s;
+  /* duration then delay
+  opacity starts animation (0s delay, 1s duration),
+  height waits 1s and only then instantly (0s) restores initial value (equivalent of display: none in the animation callback). */
 }
 
 #motorhome:hover #hover-motorhome,
 #coho:hover #hover-coho,
 #portfolio:hover #hover-portfolio,
 #others:hover #hover-others {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: auto;
+  opacity: 1;
+  transition: height 0s 0s, opacity 1s 0s;
+  /* both height and opacity start animation without delay (0s),
+  though height takes 0s to complete animation (equivalent of display: block) and opacity takes 1s. */
 }
 
 .text-img {
@@ -53,7 +81,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  /* #motorhome {
-    width: 20vw;
-  } */
+  .section-content {
+    width: 60vw;
+  }
 }

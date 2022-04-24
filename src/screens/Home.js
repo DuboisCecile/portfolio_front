@@ -8,9 +8,9 @@ import Mug from '../assets/images/mug.png';
 export default function Home() {
   const mugRef = useRef();
   const homeImageRef = useRef();
-  const [elementsInViewport, setElementsInViewport] = useState(null);
+  const [homeElementsInViewport, setHomeElementsInViewport] = useState(null);
 
-  const inViewport = (entries) => {
+  const homeInViewport = (entries) => {
     entries.forEach((entry) => {
       if (entry.target.id === 'home-image')
         homeImageRef.current?.classList.toggle(
@@ -25,26 +25,26 @@ export default function Home() {
     });
   };
 
-  const obs = new IntersectionObserver(inViewport);
+  const obsHome = new IntersectionObserver(homeInViewport);
   const obsOptions = {
     // threshold: 1,
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setElementsInViewport(document.querySelectorAll('.checkVP'));
+    setHomeElementsInViewport(document.querySelectorAll('.checkVP'));
     return () => {
-      setElementsInViewport(null);
-      obs.disconnect();
+      setHomeElementsInViewport(null);
+      obsHome.disconnect();
     };
   }, []);
 
   useEffect(() => {
-    if (elementsInViewport)
-      elementsInViewport.forEach((element) => {
-        obs.observe(element, obsOptions);
+    if (homeElementsInViewport)
+      homeElementsInViewport.forEach((element) => {
+        obsHome.observe(element, obsOptions);
       });
-  }, [elementsInViewport]);
+  }, [homeElementsInViewport]);
 
   return (
     <div className="page-container">
