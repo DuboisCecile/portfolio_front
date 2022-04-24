@@ -32,11 +32,11 @@
   border-radius: 0.25em;
   box-shadow: 1em 1em 2em 0.25em rgba(0, 0, 0, 0.2);
   margin: 1em 0;
-  max-width: 38rem;
   opacity: 0;
   -webkit-transform: translateY(4em) rotateZ(-8deg);
   transform: translateY(4em) rotateZ(-8deg);
   width: 80%;
+  max-width: 38rem;
   will-change: transform, opacity;
 }
 
@@ -147,14 +147,14 @@
   position: absolute;
   top: 14rem;
   left: 50%;
-  width: 28rem;
+  width: 22rem;
   height: 2rem;
   transition: 0.4s;
   transform: translateX(-50%);
-  -webkit-transition: 0.4s;
+  /* -webkit-transition: 0.4s;
   -webkit-transform: translateX(-50%);
   -moz-transition: 0.4s;
-  -moz-transform: translateX(-50%);
+  -moz-transform: translateX(-50%); */
   border-radius: 100%;
   background: radial-gradient(
     rgba(0, 0, 0, 0.5),
