@@ -5,10 +5,18 @@
 /* *************************** */
 /* ******** HOME PAGE ******** */
 /* *************************** */
+
+.home-h2 {
+  text-align: center;
+}
+
 #home-image {
   width: 100%;
   mask-image: url('../images/video-clip-mask.png?v=1');
   mask-size: 1800% 100%;
+}
+
+.home-image-is-inViewport {
   -webkit-animation: home-image-mask 3s steps(17) forwards;
   animation: home-image-mask 2s steps(17) forwards 0.5s;
 }
@@ -22,9 +30,9 @@
   }
 }
 
-#mug {
+.mug-is-inViewport {
   animation: slide-in-elliptic-top-fwd 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both 2.5s;
+    both 0.5s;
 }
 
 @keyframes slide-in-elliptic-top-fwd {

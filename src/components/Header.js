@@ -28,14 +28,17 @@ export default function Header() {
   };
 
   const closeBurger = () => {
-    setOpenedBurgerMenu(false);
     handleBurgerToggle();
+  };
+
+  const clickOnLogo = () => {
+    setOpenedBurgerMenu(false);
   };
 
   return (
     <header>
       <div id="logo-and-burger-div">
-        <NavLink className="logo-font" path="/" to="/" onClick={closeBurger}>
+        <NavLink className="logo-font" path="/" to="/" onClick={clickOnLogo}>
           Cécile Dubois
         </NavLink>
         <button
@@ -54,7 +57,7 @@ export default function Header() {
           Home
         </NavLink>
         <NavLink to="/who" className="menu-link" onClick={closeBurger}>
-          Qui suis-je ?
+          Qui suis&#8209;je&nbsp;?
         </NavLink>
         <NavLink to="/skills" className="menu-link" onClick={closeBurger}>
           Mes compétences

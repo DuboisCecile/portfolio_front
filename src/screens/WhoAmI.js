@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '../assets/styles/whoAmI.css';
@@ -10,7 +10,7 @@ import Family from '../assets/images/famille.jpg';
 import PlanB from '../assets/images/plan-B.jpg';
 import Brainstorming from '../assets/images/brainstorming.jpg';
 import Yoga from '../assets/images/yoga-01.jpg';
-import YogaSkeleton from '../assets/images/yoga_skeleton.png';
+import YogaSkeleton from '../assets/images/yoga_skeleton_basket.png';
 import ZooMap from '../assets/images/zoo-map.jpg';
 import Computer from '../assets/images/ordinateur.png';
 
@@ -51,10 +51,16 @@ const hobbiesImagesList = [
 ];
 
 export default function WhoAmI() {
-  const [elementsToShow, setElementsToShow] = useState();
+  const containerRef = useRef();
+  const imagesRefs = useRef([]);
   const [svgElement, setSvgElement] = useState();
   const [animalsSliderIndex, setAnimalsSliderIndex] = useState(0);
   const [hobbiesSliderIndex, setHobbiesSliderIndex] = useState(0);
+  const [whoElementsInViewport, setWhoElementsInViewport] = useState(null);
+  const [animalsTimerIntervalId, setAnimalsTimerIntervalId] = useState(null);
+  const [animalsInViewport, setAnimalsInViewport] = useState(false);
+  const [hobbiesTimerIntervalId, setHobbiesTimerIntervalId] = useState(0);
+  const [hobbiesInViewport, setHobbiesInViewport] = useState(false);
 
   const maskedElement = document.querySelector('#mask-circle');
   const circleFeedback = document.querySelector('#circle-shadow');
@@ -73,58 +79,87 @@ export default function WhoAmI() {
     circleFeedback.setAttribute('cy', svgCoords.y);
   };
 
-  const isElementInViewport = (element) => {
-    const rect = element.getBoundingClientRect();
-    return (
-      (rect.top <= 0 && rect.bottom >= 0) ||
-      (rect.bottom >=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.top <=
-          (window.innerHeight || document.documentElement.clientHeight)) ||
-      (rect.top >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight))
-    );
-  };
+  useEffect(() => {
+    if (animalsInViewport && !animalsTimerIntervalId) {
+      const animalsTimer = setInterval(() => {
+        setAnimalsSliderIndex(
+          (index) => (index + 1) % animalsImagesList.length
+        );
+      }, 2000);
+      setAnimalsTimerIntervalId(animalsTimer);
+    } else {
+      clearInterval(animalsTimerIntervalId);
+      setAnimalsTimerIntervalId(null);
+    }
+  }, [animalsInViewport]);
 
-  const loop = () => {
-    elementsToShow?.forEach((element) => {
-      if (
-        isElementInViewport(element) &&
-        !element.classList.contains('is-visible')
-      ) {
-        element.classList.add('is-visible');
-      } else if (
-        !isElementInViewport(element) &&
-        element.classList.contains('is-visible')
-      ) {
-        element.classList.remove('is-visible');
+  useEffect(() => {
+    if (hobbiesInViewport && !hobbiesTimerIntervalId) {
+      const hobbiesTimer = setInterval(() => {
+        setHobbiesSliderIndex(
+          (index) => (index + 1) % hobbiesImagesList.length
+        );
+      }, 2000);
+      setHobbiesTimerIntervalId(hobbiesTimer);
+    } else {
+      clearInterval(hobbiesTimerIntervalId);
+      setHobbiesTimerIntervalId(null);
+    }
+  }, [hobbiesInViewport]);
+
+  const whoInViewport = (entries) => {
+    entries.forEach((entry) => {
+      const entryRef = imagesRefs?.current.find(
+        (ref) => ref.current?.id === entry.target.id
+      );
+      if (entryRef) {
+        entryRef.current.classList.toggle(
+          'is-visible',
+          entry.intersectionRatio > 0
+        );
+
+        if (entry.target.id === 'animals') {
+          if (entry.intersectionRatio > 0) setAnimalsInViewport(true);
+          else setAnimalsInViewport(false);
+        }
+
+        if (entry.target.id === 'hobbies') {
+          if (entry.intersectionRatio > 0) setHobbiesInViewport(true);
+          else setHobbiesInViewport(false);
+        }
       }
     });
   };
 
+  const obsWho = new IntersectionObserver(whoInViewport);
+  const obsOptions = {
+    root: containerRef.current,
+    threshold: 0.5,
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    setElementsToShow(document.querySelectorAll('.show-on-scroll'));
+    imagesRefs.current = [...Array(9)].map(
+      // eslint-disable-next-line no-return-assign
+      (ref, index) => (imagesRefs.current[index] = createRef())
+    );
     setSvgElement(document.querySelector('svg'));
-
-    const animalsTimer = window.setInterval(() => {
-      setAnimalsSliderIndex((index) => (index + 1) % animalsImagesList.length);
-    }, 2000);
-    const hobbiesTimer = window.setInterval(() => {
-      setHobbiesSliderIndex((index) => (index + 1) % hobbiesImagesList.length);
-    }, 2000);
+    setWhoElementsInViewport(document.querySelectorAll('.show-on-scroll'));
 
     return () => {
-      window.clearInterval(animalsTimer);
-      window.clearInterval(hobbiesTimer);
+      clearInterval(animalsTimerIntervalId);
+      clearInterval(hobbiesTimerIntervalId);
+      obsWho.disconnect();
+      setWhoElementsInViewport(null);
     };
   }, []);
 
   useEffect(() => {
-    if (elementsToShow) window.addEventListener('scroll', loop);
-    return () => window.removeEventListener('scroll', loop);
-  }, [elementsToShow]);
+    if (whoElementsInViewport)
+      whoElementsInViewport.forEach((element) => {
+        obsWho.observe(element, obsOptions);
+      });
+  }, [whoElementsInViewport]);
 
   useEffect(() => {
     if (svgElement) {
@@ -150,8 +185,9 @@ export default function WhoAmI() {
   }, [svgElement]);
 
   const requestImageFile = require.context('../assets/images', true);
+
   return (
-    <div className="page-container">
+    <div className="page-container" ref={containerRef}>
       <div className="page-content">
         {isMobile && <div className="text-block page-title">Qui suis-je ?</div>}
 
@@ -160,9 +196,9 @@ export default function WhoAmI() {
           <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
             <image
               id="yoga"
-              className="skeleton-image"
+              className="yoga-image"
               href={Yoga}
-              alt="Squelette"
+              alt="Rayons X"
             />
           </svg>
           <svg className="who-am-i-svg" xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +215,7 @@ export default function WhoAmI() {
             </defs>
             <g clipPath="url(#mask)">
               <rect width="100%" height="100%" fill="#272730" />
-              <image className="skeleton-image" href={YogaSkeleton} />
+              <image className="yoga-image" href={YogaSkeleton} />
             </g>
             <circle
               id="circle-shadow"
@@ -194,13 +230,14 @@ export default function WhoAmI() {
         <div className="text-block">
           Si, professionnellement, je suis désormais développeuse web et
           conceptrice d'applications, je ne l'ai pas toujours été,... et je ne
-          suis pas que cela !
+          suis pas que cela&nbsp;!
           <br />
           <br />A l'heure où j'écris ces lignes, je suis en Ardèche, entourée de
           cerisiers qui commencent à fleurir.
         </div>
         <img
           id="cherry"
+          ref={imagesRefs.current[0]}
           className="inline-photo show-on-scroll"
           src={Cherry}
           alt="Fleurs de cerisier"
@@ -210,8 +247,9 @@ export default function WhoAmI() {
           entourée par la nature.
         </div>
         <img
-          className="inline-photo show-on-scroll"
           id="countryLandscape"
+          ref={imagesRefs.current[1]}
+          className="inline-photo show-on-scroll"
           src={Landscape}
           alt="Paysage de campagne"
         />
@@ -220,6 +258,8 @@ export default function WhoAmI() {
           zoologique, au contact d'animaux fascinants.
         </div>
         <img
+          id="animals"
+          ref={imagesRefs.current[2]}
           className="inline-photo show-on-scroll"
           src={requestImageFile(
             `./${animalsImagesList[animalsSliderIndex].src}`
@@ -231,8 +271,9 @@ export default function WhoAmI() {
           des animaux ainsi que celui des visiteurs étaient mes priorités.
         </div>
         <img
-          className="inline-photo show-on-scroll"
           id="family"
+          ref={imagesRefs.current[3]}
+          className="inline-photo show-on-scroll"
           src={Family}
           alt="Famille"
         />
@@ -244,8 +285,9 @@ export default function WhoAmI() {
           accueillir un journaliste.
         </div>
         <img
+          id="zoo-map"
+          ref={imagesRefs.current[4]}
           className="inline-photo show-on-scroll"
-          id="zoo"
           src={ZooMap}
           alt="Plan de zoo"
         />
@@ -255,6 +297,8 @@ export default function WhoAmI() {
           la nature, ou encore à jardiner.
         </div>
         <img
+          id="hobbies"
+          ref={imagesRefs.current[5]}
           className="inline-photo show-on-scroll"
           src={requestImageFile(
             `./${hobbiesImagesList[hobbiesSliderIndex].src}`
@@ -268,8 +312,9 @@ export default function WhoAmI() {
           rapidement au plan B !
         </div>
         <img
-          className="inline-photo show-on-scroll"
           id="planB"
+          ref={imagesRefs.current[6]}
+          className="inline-photo show-on-scroll"
           src={PlanB}
           alt="Plan B"
         />
@@ -281,8 +326,9 @@ export default function WhoAmI() {
           temps.
         </div>
         <img
-          className="inline-photo show-on-scroll"
           id="brainstorming"
+          ref={imagesRefs.current[7]}
+          className="inline-photo show-on-scroll"
           src={Brainstorming}
           alt="Brainstorming"
         />
@@ -291,15 +337,16 @@ export default function WhoAmI() {
           disposition pour tout projet de site internet ou d'application.
         </div>
         <img
-          className="inline-photo show-on-scroll"
           id="website"
+          ref={imagesRefs.current[8]}
+          className="inline-photo show-on-scroll"
           src={Computer}
           alt="Site web"
         />
         <div className="self-center">
           <div className="text-block">
             N'hésitez pas à me
-            <NavLink id="contact-link" path="/contact" to="/contact">
+            <NavLink className="contact-link" path="/contact" to="/contact">
               contacter !
             </NavLink>
           </div>
