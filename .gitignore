@@ -26,3 +26,5 @@ yarn-error.log*
 
 .env
 .vscode
+/dossier_API_de_PH_public_html
+mots_cle_developpeur_web.txt
