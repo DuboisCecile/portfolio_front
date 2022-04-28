@@ -4,6 +4,7 @@ import { isMobile } from 'react-device-detect';
 import '../assets/styles/portfolio.css';
 import Motorhome from '../assets/images/camping-car_isolé.png';
 import LogoReact from '../assets/images/React_logo.png';
+import LogoNode from '../assets/images/logo-Node-blanc.png';
 import LogoPHP from '../assets/images/PHP_logo.png';
 import LogoPython from '../assets/images/python_logo.png';
 import LogoCoho from '../assets/images/logo-coho-new-blanc.png';
@@ -250,8 +251,36 @@ export default function Portfolio() {
             <div className="logo-font framed-img">Cécile Dubois</div>
             <div id="hover-portfolio">
               <div className="text-block section-title">Ce site !</div>
-              <div className="text-block strong-italic">
-                En cours de rédaction
+              <div className="text-block">
+                Le site que vous consultez actuellement est probablement le
+                projet le plus personnel que j'ai fait !
+                <br />
+                <br />
+                J'ai choisi de le développer "à la main", c'est à dire sans
+                l'aide de maquette prédéfinie (template) ou de CMS (système de
+                gestion de contenu, de type Wordpress).
+                <br />
+                De même, j'ai voulu faire la mise en forme avec du CSS pur, sans
+                utiliser de bibliothèques telles que Bootstrap ou Tailwind.
+                <br />
+                J'ai ainsi pu totalement personnaliser mon site, sans aucune
+                contrainte ou limitation qui aurait pu être apportée par ces
+                outils.
+              </div>
+              <div className="text-block with-inline-img strong-italic">
+                J'ai développé ce site en utilisant
+                <img
+                  className="logo-stack"
+                  src={LogoReact}
+                  alt="Logo React"
+                />{' '}
+                pour le frontend, et
+                <img
+                  className="logo-stack"
+                  src={LogoNode}
+                  alt="Logo Node.js"
+                />{' '}
+                pour le backend.
               </div>
             </div>
           </div>
