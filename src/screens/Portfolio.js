@@ -308,6 +308,21 @@ export default function Portfolio() {
                 une méthodologie Agile (Scrum), de façon à être les plus
                 efficaces possible.
               </div>
+              <div className="text-block with-inline-img strong-italic">
+                Nous avons utilisé
+                <img
+                  className="logo-stack"
+                  src={LogoReact}
+                  alt="Logo React"
+                />{' '}
+                pour le frontend, et
+                <img
+                  className="logo-stack"
+                  src={LogoNode}
+                  alt="Logo Node.js"
+                />{' '}
+                pour le backend.
+              </div>
             </div>
           </div>
         </section>

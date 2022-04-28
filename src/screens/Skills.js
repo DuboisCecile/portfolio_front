@@ -58,16 +58,21 @@ export default function Skills() {
           doit s'y retrouver, y naviguer facilement et ne pas perdre de temps à
           chercher une information. Il doit aimer ce qu'il a vu sur ce site...
           sinon il n'y reviendra jamais&nbsp;!
+          <br />
+          Ce travail de maquettage est la première étape que je réalise lorsque
+          je commence la conception d'un nouveau site web.
         </div>
         <div className="text-block section-title">A l'écoute du client</div>
         <img className="img-resp" src={Ideas} alt="Partage d'idées" />
         <div className="text-block">
           Un développeur ne doit pas concevoir un site selon ses propres goûts.
           Le design et le contenu doivent bien évidemment être en lien avec ce
-          qu'ils doivent montrer (identité de marque, thème visuel an adéquation
-          avec l'environnement du produit, etc.). Il faut aussi définir en amont
-          le but de ce site : s'agit-il de vendre un produit&nbsp;? De se faire
-          connaître&nbsp;? De pouvoir communiquer des informations&nbsp;?
+          qu'ils doivent montrer (identité de marque, thème visuel en adéquation
+          avec l'environnement du produit, etc.).
+          <br />
+          Il faut aussi définir en amont le but de ce site : s'agit-il de vendre
+          un produit&nbsp;? De se faire connaître&nbsp;? De pouvoir communiquer
+          des informations&nbsp;?
           <br />
           J'échange donc très régulièrement avec le client pour qui je développe
           le site ou l'application. Ses avis sont très précieux&nbsp;!
@@ -96,9 +101,14 @@ export default function Skills() {
           alt="Calanques"
         />
         <div className="text-block">
-          Même pour un site dit "statique" (c'est à dire dont le contenu ne
-          change pas), il est possible de lui insuffler de la vie en ajoutant
-          des effets visuels, des animations, etc.
+          Même dans un site dit "statique" (c'est à dire dont le contenu ne
+          change pas), il est possible d'insuffler de la vie en ajoutant des
+          effets visuels, des animations, etc.
+          <br />
+          Les animations permettent de mettre en évidence les points les plus
+          importants, d'attirer le regard de l'utilisateur vers un élément
+          spécifique, pour le guider. C'est pourquoi je n'hésite pas à les
+          utiliser... mais sans en abuser !
         </div>
         <div className="text-block section-title">Référencement naturel</div>
         <img
@@ -114,9 +124,9 @@ export default function Skills() {
           <br />
           Car un site, même très bien fait, ne sera pas d'une grande utilité si
           personne ne le consulte&nbsp;! <br />
-          Après étude des besoins, des éléments permettant d'améliorer le
-          référencement naturel du site par les moteurs de recherche (SEO) sont
-          intégrés.
+          Après étude des besoins, et au fil du développement, des éléments
+          permettant d'améliorer le référencement naturel du site par les
+          moteurs de recherche (SEO) sont intégrés.
         </div>
       </div>
     </div>
